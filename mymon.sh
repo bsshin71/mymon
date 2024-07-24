@@ -78,12 +78,9 @@ fi
 MONITOR=.; export MONITOR
 USER=root; export USER
 PASS="ss0081"; export PASS
-#PASS="bigdataking"; export PASS
 OS=`uname -s`; export OS
 OSVER=`uname -r`; export OSVER
 MYSQL_VER_CHK=8 ; export MYSQL_VER_CHK
-#MYSQL_IP="10.11.4.141" ; export MYSQL_IP
-#MYSQL_IP="10.100.4.141" ; export MYSQL_IP
 MYSQL_IP="127.0.0.1" ; export MYSQL_IP
 MYSQL_PORT_NO=3306; export ALTIBASE_PORT_NO
 PAGER=more; export PAGER
