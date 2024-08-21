@@ -15,6 +15,7 @@ DBA 업무를 하다보면  db 상태라든지 점검을 위한  sql 문들을  
 - Linux
 
 - bash shell
+- mysql cli 를 통해서 실행되어야 하므로 mysql cli 가 설치된 환경
 
 - 터미널 폰트 사이즈 10pt
 
