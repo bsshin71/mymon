@@ -1,0 +1,1 @@
+show slave status \G
