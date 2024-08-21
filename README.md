@@ -2,6 +2,14 @@
 shell script for monitoring MySQL
 for MySQL DBA
 
+## 용도
+DBA 업무를 하다보면  db 상태라든지 점검을 위한  sql 문들을  많이들 갖고 있을 텐데  필요한 순간마다 매번 찾아서  쿼리 실행기(mysql cli 나 기타 gui tool등) 를 통해서  copy 후 실행하는 방식은  좀 불편하였다.
+
+이를 간편하게 하기 위해서 평소 활용도가 높거나 유용한  쿼리들을 번호만 입력하면 쉽게 실행할 수 있고  Enter 키만 치면 반복해서 실행하도록 하는 shell script 를 작성하였다.
+
+본인들이 소장하고 있는  쿼리문을   shell script 에  계속 추가해 나갈 수 있다.
+
+ 
 ## 사용환경
 
 - Linux
