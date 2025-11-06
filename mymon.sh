@@ -20,15 +20,17 @@ pr_version()
 
 # Get root user password from prompt
 get_rootpass(){
-  stty -echo
-  echo
-  if [ $OS = "Linux" ] ; then
-    echo -e "Enter MySQL root Password : \c"
-  else
-    echo "Enter MySQL root Password : \c"
-  fi
-  read PASS
-  stty echo
+#  stty -echo
+#  echo
+#  if [ $OS = "Linux" ] ; then
+#    echo -e "Enter MySQL root Password : \c"
+#  else
+#    echo "Enter MySQL root Password : \c"
+#  fi
+#  read PASS
+#  stty echo
+   read -s -p "Enter MySQL root password : " PASS
+   echo 
 }
 
 # Check MySQL Version -----------------------
@@ -40,7 +42,8 @@ mysql_version_chk(){
      echo 'The lower version Than MySQL 8 do not support yet'
      exit
   elif [  ${MAJOR_MYSQL_VER} -eq 8  ] ; then
-     echo "MySQL ${MYSQL_VER_CHK}"
+     #echo "MySQL ${MYSQL_VER_CHK}"
+      :
   fi
 
 }
@@ -50,7 +53,7 @@ get_dbhostname() {
   MY_HOSTNAME=`$MSQL -sN -e "select @@hostname"`
 
   export MY_HOSTNAME
-  echo "${MY_HOSTNAME}"
+#  echo "${MY_HOSTNAME}"
 }
 
 # SQL Run Function ----------------------------
@@ -94,13 +97,29 @@ clear
 pr_version
 
 # Get root user password  -----------------------
-get_rootpass
 export MYSQL_PWD=${PASS}
 MSQL="mysql -h ${MYSQL_IP} -u $USER -P${MYSQL_PORT_NO}"; export MSQL
 
-echo "MSQL=$MSQL"
+for i in  `seq 1 3`
+do
+  get_rootpass
+  export MYSQL_PWD=${PASS}
+  $MSQL  -e "select @@hostname" > /dev/null 2>&1
+  if [ $? -ne 0  ] ; then
+         echo "Invalid password or error occurred"
+         if [ $i -gt 2 ] ; then
+                exit 1
+         fi
+  else
+          break;
+  fi
+done
 
+echo ""
+
+clear 
 mysql_version_chk
+
 
 get_dbhostname
 
